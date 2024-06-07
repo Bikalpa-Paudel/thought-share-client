@@ -1,9 +1,19 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { sendOtp } from "@/services/(api)/auth";
+import { useMutation } from "react-query";
+
 export default function Signup() {
+  const { data, mutate, isLoading } = useMutation({
+    mutationFn: sendOtp,
+  });
+
+  console.log(data);
+
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="hidden bg-muted lg:block">
@@ -45,7 +55,10 @@ export default function Signup() {
               </div>
               <Input id="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full">
+            <Button
+              onClick={() => mutate({ email: "bikalpapaudel53@gmail.com" })}
+              className="w-full"
+            >
               Login
             </Button>
             <Button variant="outline" className="w-full">
