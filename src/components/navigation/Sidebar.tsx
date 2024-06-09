@@ -1,9 +1,12 @@
+"use client";
 import { Badge, Home, Package2, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
 function Sidebar() {
+  const pathname = usePathname();
   return (
-    <section className="flex h-screen max-h-screen flex-col gap-2">
+    <section className="flex w-[20%] h-screen max-h-screen flex-col gap-2 border">
       <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <Package2 className="h-6 w-6" />
@@ -14,7 +17,9 @@ function Sidebar() {
         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
           <Link
             href="/"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            className={`${
+              pathname === "/" ? "text-[#3690c8]" : "text-muted-foreground "
+            } flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary`}
           >
             <Home className="h-4 w-4" />
             Home
